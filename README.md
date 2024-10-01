@@ -14,3 +14,5 @@ i made a new image for the app since i couldnt find the source for the old one, 
 ### It says it was developed by 'iamevn + r4t'. Wdym?
 well, most of the code is theirs and whilst i did update it i dont want to take credit for all of it.
 so i decided to leave their name in.
+
+and in spirit to their original project, this too has the "do whatever" license
