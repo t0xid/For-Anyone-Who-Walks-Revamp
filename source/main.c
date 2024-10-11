@@ -8,7 +8,6 @@
 #include "persistantData.h"
 
 bool fixCoins(u16 change, u16 amt, bool iswithdraw);
-bool updateBankCoins(u16 amt);
 
 int main()
 {
@@ -71,7 +70,7 @@ int main()
 				break;
 		}
 	}
-	
+
 	if (res == 1) {
 		u16 storedcoins = getStoredCoins();
 		printf("today coins: %d\nstored coins: %d\n", (unsigned int)todaycoins, (unsigned int)storedcoins);
