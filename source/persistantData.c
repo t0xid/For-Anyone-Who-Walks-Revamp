@@ -7,7 +7,7 @@
 
 FILE *file;
 const char *filename = "cache.bin";
-const int size = 0x8;
+const int size = 0xA;
 u8 *buffer;
 /* file structure:
  * offset|size|desc
@@ -17,6 +17,8 @@ u8 *buffer;
  *   0x04|0x02|year
  *   0x06|0x01|month
  *   0x07|0x01|day
+ * 
+ * 	 0x08|0x02|play coins in bank
  */
 
 void buffReset(u8 day, u8 month, u16 year);
@@ -79,14 +81,15 @@ u16 getStoredCoins()
 	u8 lowByte = buffer[2];
 	u8 highByte = buffer[3];
 
-	return (u16)lowByte;
+	//return (u16)lowByte;
 	u16 combined;
 	u8 *bytes = (void*)&combined;
 	bytes[0] = highByte;
 	bytes[1] = lowByte;
 
-	/* combined <<= 8; */
-	/* combined = combined | lowByte; */
+	combined <<= 8;
+	combined = combined | lowByte;
+
 	return combined;
 }
 void setStoredCoins(u16 value)
@@ -97,6 +100,34 @@ void setStoredCoins(u16 value)
 
 	buffer[2] = lowByte;
 	buffer[3] = highByte;
+
+	writeBuffToFile();
+}
+
+u16 getStoredBankCoins()
+{
+	u8 lowByte = buffer[8];
+	u8 highByte = buffer[9];
+
+	//return (u16)lowByte;
+	u16 combined;
+	u8 *bytes = (void*)&combined;
+	bytes[0] = highByte;
+	bytes[1] = lowByte;
+
+	combined <<= 8; 
+	combined = combined | lowByte; 
+
+	return combined;
+}
+void setStoredBankCoins(u16 value)
+{
+	u8 highByte, lowByte;
+	highByte = value >> 8 & 0xFF;
+	lowByte = value & 0xFF;
+
+	buffer[8] = lowByte;
+	buffer[9] = highByte;
 
 	writeBuffToFile();
 }

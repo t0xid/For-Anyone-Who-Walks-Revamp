@@ -19,5 +19,8 @@ void mydataExit();
 u16 getStoredCoins();
 void setStoredCoins(u16 value);
 
+u16 getStoredBankCoins();
+void setStoredBankCoins(u16 value);
+
 // u32 getStoredSteps();
 // Result setStoredSteps(u32 value);
