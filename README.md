@@ -2,7 +2,7 @@
 a revamp of iamevn's 3ds app: for-anyone-who-walks-a-lot 
 
 ### What do i mean "revamp"?
-well, i downloaded the app and while it works it was a bit when displaying text as it was adding coins.
+well, i downloaded the app and while it works it was a bit weird when displaying text as it was adding coins.
 
 i thought it odd and decided to download the source code and fix up formatting on just 2 lines in the code.
 i needed to fix more than 2 lines.
