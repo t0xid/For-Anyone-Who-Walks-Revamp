@@ -131,6 +131,11 @@ int main()
 				printf("...Error!\n\n Press [START] to exit.\n");
 			}
 		}
+
+		if (kDown) {
+			// update new coin count
+			printf("\x1b[3;2HCurrent Coin Count: \x1b[33m%d\x1b[0m \n\x1b[17;0H", getCoins());
+		}
 	}
 
 	gfxExit();
