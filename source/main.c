@@ -38,7 +38,6 @@ int main()
 		/* printf("\n\n    Press Start to exit.\n"); */
 	}
 
-
 	/* TEST DATA */
 	//today.day = 14; today.month=8; today.year=2015;
 	//todaysteps = 26200;
@@ -133,7 +132,7 @@ int main()
 		}
 
 		if (kDown) {
-			// update new coin count
+			// update current coin count
 			printf("\x1b[3;2HCurrent Coin Count: \x1b[33m%d\x1b[0m \n\x1b[17;0H", getCoins());
 		}
 	}
@@ -157,11 +156,13 @@ bool fixCoins(u16 change, u16 amt, bool iswithdraw) {
 		u16 bankdeposit = overfillcheck - 300;
 		printf("\n\n \x1b[31m[!]\x1b[0m OVERFLOW \x1b[31m[!]\x1b[0m \n storing \x1b[36m%d\x1b[0m coins in the bank...\n\n ", bankdeposit);
 	
+		u16 bank_value = getStoredBankCoins() + bankdeposit;
+
 		if (iswithdraw) {
-			setStoredBankCoins(getStoredBankCoins() + bankdeposit - change);
+			setStoredBankCoins(bank_value - change);
 			bankaction = true;
 		} else {
-			setStoredBankCoins(getStoredBankCoins() + bankdeposit);
+			setStoredBankCoins(bank_value);
 			bankaction = true;
 		}
 	}

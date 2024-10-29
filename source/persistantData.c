@@ -32,6 +32,8 @@ void writeBuffToFile();
 Result mydataInit(u8 day, u8 month, u16 year)
 {
 	Result ret;
+	int save_bank = 0;
+	u16 previous_bank = 0;
 
 	buffer=malloc(size);
 	if(!buffer) return -1;
@@ -42,6 +44,9 @@ Result mydataInit(u8 day, u8 month, u16 year)
 		ret = 2;
 REINIT:     /* initialize it */
 		buffReset(day, month, year);
+		if (save_bank) {
+			setStoredBankCoins(previous_bank);
+		}
 		writeBuffToFile();
 	} else {
 		// seek to end of file
@@ -64,6 +69,12 @@ REINIT:     /* initialize it */
 				ret = 1;
 			} else {
 				ret = 0;
+
+				if (!save_bank) {
+					previous_bank = getStoredBankCoins();
+					save_bank = 1;
+				}
+
 				goto REINIT;
 			}
 		}
